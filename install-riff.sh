@@ -37,3 +37,4 @@ eval $(minikube docker-env)
 # Setup the gateway
 echo "Setting up HTTP Gateway..."
 GATEWAY=`minikube service --url demo-riff-http-gateway`
+HEADER="Content-Type: text/plain"
