@@ -30,11 +30,8 @@ sleep 45
 echo "Installing Riff..."
 helm install riffrepo/riff --name demo --set httpGateway.service.type=NodePort
 
-# Point to the minikube docker daemon
-echo "Configuring minikube docker daemon..."
-eval $(minikube docker-env)
-
-# Setup the gateway
-echo "Setting up HTTP Gateway..."
-GATEWAY=`minikube service --url demo-riff-http-gateway`
-HEADER="Content-Type: text/plain"
+echo -e "\n\nTo configure your terminal, run...\n
+eval \$(minikube docker-env)
+export GATEWAY=\`minikube service --url demo-riff-http-gateway\`
+export HEADER=\"Content-Type: text/plain\"
+"
