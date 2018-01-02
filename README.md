@@ -33,3 +33,31 @@ This script will simply delete the existing Riff install and reinstall it, so an
 Functions
 ---
 The [functions](https://github.com/BrianMMcClain/riff-demos/tree/master/functions) directory contains a series of demos to show off various features of Riff. A great place to start is in the echo example, which contains examples of the same functionality in multiple supported languages. Every demo will include a README on how to setup and run them.
+
+Stopping and Starting Minikube
+---
+Should you need to stop the VM, it's recommended that do so via the Minikube CLI, such as:
+
+```
+minikube stop
+```
+
+This will gracefully shut down Kubernetes and the VM it's running on. Then, to restore it, you can simply run:
+
+```
+minikube start
+```
+
+Which will bring everything back up to how it was previously running. Once the command returns, it will take some time for the pods to be back up and running, so be sure to monitor their progress with:
+
+```
+watch -n 3 kubectl get functions,topics,pods,services,deploy
+```
+
+Tearing It Down
+---
+If you need to tear down the whole environment (Riff, Minikube, etc.) the easiest and quickest way is to simply delete the Minikube instance. To do so gracefully and easily, the recommended way is via:
+
+```
+minikube delete
+```
