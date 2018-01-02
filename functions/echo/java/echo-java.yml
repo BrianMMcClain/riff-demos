@@ -1,0 +1,15 @@
+apiVersion: projectriff.io/v1
+kind: Topic
+metadata:
+  name: echo-java
+---
+
+apiVersion: projectriff.io/v1
+kind: Function
+metadata:
+  name: echo-java
+spec:
+  protocol: http
+  input: echo-java
+  container:
+    image: projectriff/echo-java:0.0.1
