@@ -30,6 +30,13 @@ sleep 45
 echo "Installing Riff..."
 helm install riffrepo/riff --name demo --set httpGateway.service.type=NodePort
 
+# Install the Riff CLI
+echo "Installing Riff CLI..."
+wget https://raw.githubusercontent.com/projectriff/riff/583246872ac95871073f160e5baae895035caa61/riff -O riff
+chmod +x riff
+mv riff /usr/local/bin/riff
+
+
 echo -e "\n\nTo configure your terminal, run...\n
 eval \$(minikube docker-env)
 export GATEWAY=\`minikube service --url demo-riff-http-gateway\`
