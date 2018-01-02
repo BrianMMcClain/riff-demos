@@ -14,4 +14,4 @@ spec:
   protocol: stdio
   input: echo-shell
   container:
-    image: projectriff/echo:0.0.1
+    image: projectriff/echo-shell:0.0.1
