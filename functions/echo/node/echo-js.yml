@@ -1,0 +1,15 @@
+apiVersion: projectriff.io/v1
+kind: Topic
+metadata:
+  name: echo-js
+---
+
+apiVersion: projectriff.io/v1
+kind: Function
+metadata:
+  name: echo-js
+spec:
+  protocol: http
+  input: echo-js
+  container:
+    image: projectriff/echo-js:0.0.1

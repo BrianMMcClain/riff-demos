@@ -1,0 +1,1 @@
+module.exports = (input) => "JS Echoing: " + input
