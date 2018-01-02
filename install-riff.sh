@@ -24,7 +24,20 @@ helm repo update
 
 # Wait for Tiller to start
 echo "Waiting for Tiller to start..."
-sleep 45
+TILLER_WAIT=0
+until helm version 1> /dev/null 2> /dev/null
+do
+  sleep 1
+  TILLER_WAIT=$((TILLER_WAIT+1))
+  if [ $TILLER_WAIT -eq 30 ]
+  then
+      echo "Could not connect to Tiller, exiting!"
+      exit -1
+  fi
+done
+
+echo "Tiller ready!"
+
 
 # Install Riff
 echo "Installing Riff..."
