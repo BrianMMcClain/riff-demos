@@ -18,6 +18,14 @@ export GATEWAY=`minikube service --url demo-riff-http-gateway`
 export HEADER="Content-Type: text/plain"
 ```
 
+If you'd like to keep an eye on what pods, topics and functions are configured, you can watch the status of minikube with the following:
+
+```
+watch -n 3 kubectl get functions,topics,pods,services,deploy
+```
+
+NOTE: This may give an error until you configure your first function, this is expected.
+
 clean-riff.sh
 ---
 This script will simply delete the existing Riff install and reinstall it, so any functions and topics will need to be reapplied.
