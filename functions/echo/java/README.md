@@ -1,12 +1,14 @@
-echo-node
+echo-java
 ===
 
-The "Hello World" of Riff, the echo-node function takes in a string and echos it back at the user
+The "Hello World" of Riff, the echo-java function takes in a string and echos it back at the user
 
 Build the Function
 ---
 ```
-riff build -n echo-node -v 0.0.1 -f .
+mvn install
+mvn package
+riff build -n echo-java -v 0.0.1 -f .
 ```
 
 Apply the Function
@@ -25,7 +27,7 @@ export HEADER="Content-Type: text/plain"
 
 And then call the function
 ```
-curl $GATEWAY/requests/echo-node -H "$HEADER" -d "Hello World"
+curl $GATEWAY/requests/echo-java -H "$HEADER" -d "Hello World"
 ```
 
 Which will return:
