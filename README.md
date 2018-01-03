@@ -28,7 +28,7 @@ NOTE: This may give an error until you configure your first function, this is ex
 
 clean-riff.sh
 ---
-This script will simply delete the existing Riff install and reinstall it, so any functions and topics will need to be reapplied.
+This script will iterate over all the existing applied functions, deleting them, their topics and any existing running pods. It will then delete and purge the existing Riff install and then finally reinstall it.
 
 Functions
 ---
