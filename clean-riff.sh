@@ -3,23 +3,25 @@
 # Ensure jq is installed
 JQ_PATH=$(which jq)
 if [ ! -x "$JQ_PATH" ] ; then
-   echo "jq is required to clean out Riff, install it with: brew install jq"
-   exit 1
+   echo "jq is required to do a full clean of Riff, falling back to purging the install."
+   echo "To install jq, run: brew install jq"
 fi
 
-# Delete functions, topics and any running function pods
-FUNCS=`kubectl get functions -o json | jq -r '.items | sort_by(.spec.nodeName)[] | [.metadata.name] | @tsv'`
-for FUNC in $FUNCS
-do
-    kubectl delete function $FUNC 2> /dev/null
-    kubectl delete topic $FUNC 2> /dev/null
-    PODS=`kubectl get pods -o json | jq -r '.items | sort_by(.spec.nodeName)[] | [.metadata.name] | @tsv' | grep $FUNC`
-    sleep 3 # Wait for the function to be deleted
-    for POD in $PODS
+if [ -x "$JQ_PATH" ] ; then
+    # Delete functions, topics and any running function pods
+    FUNCS=`kubectl get functions -o json | jq -r '.items | sort_by(.spec.nodeName)[] | [.metadata.name] | @tsv'`
+    for FUNC in $FUNCS
     do
-        kubectl delete pod $POD 2> /dev/null
+        kubectl delete function $FUNC 2> /dev/null
+        kubectl delete topic $FUNC 2> /dev/null
+        PODS=`kubectl get pods -o json | jq -r '.items | sort_by(.spec.nodeName)[] | [.metadata.name] | @tsv' | grep $FUNC`
+        sleep 3 # Wait for the function to be deleted
+        for POD in $PODS
+        do
+            kubectl delete pod $POD 2> /dev/null
+        done
     done
-done
+fi
 
 # Delete Riff install
 helm delete demo --purge
