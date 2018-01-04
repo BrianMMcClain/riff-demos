@@ -1,9 +1,11 @@
 Chain
 ===
 
-An example of chaining the output of one function to the input of another.
+An example of chaining the output of one function to the input of another. As Riff allows the developer to define both the input as well as the output, this means that we can place the output into an existing topic that may be the input into another.
 
 This example includes two functions, [greeting](https://github.com/BrianMMcClain/riff-demos/tree/master/functions/chain/greeting) and [timestamp](https://github.com/BrianMMcClain/riff-demos/tree/master/functions/chain/timestamp). 
+
+The `timestamp` function can (and does) operate independently from the `greeting` function, and can actually be called directly if needed (should you ever need any of your fucture functions to be timestamped). We then wrote the `greeting` function to send it's output to the `timestamp` function's input topic rather than immeditally returning to the user. This allows the developer a wide range of flexibility to chain together both new and existing functions as needed.
 
 Greeting Function
 ---
