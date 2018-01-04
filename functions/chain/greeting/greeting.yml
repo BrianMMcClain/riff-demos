@@ -1,0 +1,18 @@
+apiVersion: projectriff.io/v1
+kind: Topic
+metadata:
+  name: greeting
+spec:
+  partitions: 3
+---
+
+apiVersion: projectriff.io/v1
+kind: Function
+metadata:
+  name: greeting
+spec:
+  protocol: stdio
+  input: greeting
+  output: timestamp
+  container:
+    image: projectriff/greeting:0.0.1
