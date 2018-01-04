@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Ensure jq is installed
+JQ_PATH=$(which jq)
+if [ ! -x "$JQ_PATH" ] ; then
+   echo "jq is required to clean out Riff, install it with: brew install jq"
+   exit 1
+fi
+
 # Delete functions, topics and any running function pods
 FUNCS=`kubectl get functions -o json | jq -r '.items | sort_by(.spec.nodeName)[] | [.metadata.name] | @tsv'`
 for FUNC in $FUNCS
