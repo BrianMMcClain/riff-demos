@@ -1,16 +1,22 @@
 #!/bin/bash
 
+# Install HomeBrew if it doesn't exist
+which -s brew
+if [[ $? != 0 ]] ; then
+    # Install Homebrew
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+else
+    brew update
+fi
+
+
 # Install minikube
 echo "Installing Minikube CLI..."
-wget https://github.com/kubernetes/minikube/releases/download/v0.24.1/minikube-darwin-amd64 -O minikube && chmod +x minikube && mv minikube /usr/local/bin/minikube
-minikube version
+brew cask install minikube
 
 # Install Helm
 echo "Installing Helm CLI..."
-wget https://storage.googleapis.com/kubernetes-helm/helm-v2.7.2-darwin-amd64.tar.gz -O helm.tar.gz
-tar -xf helm.tar.gz
-mv darwin-amd64/helm /usr/local/bin/helm
-rm -rf darwin-amd64 helm.tar.gz
+brew install kubernetes-helm
 
 # Start Minikube
 echo "Starting Minikube..."
