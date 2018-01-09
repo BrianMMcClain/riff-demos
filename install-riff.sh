@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Install HomeBrew if it doesn't exist
 which -s brew
 if [[ $? != 0 ]] ; then
