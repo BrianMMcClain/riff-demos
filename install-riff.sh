@@ -9,6 +9,8 @@ else
     brew update
 fi
 
+# Ensure wget is installed
+brew install wget
 
 # Install minikube
 echo "Installing Minikube CLI..."
