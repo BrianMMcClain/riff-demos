@@ -1,3 +1,3 @@
-FROM projectriff/node-function-invoker:0.0.2
-ENV FUNCTION_URI /functions/function.js
+FROM projectriff/node-function-invoker:latest
+ENV FUNCTION_URI /functions/echo-node.js
 ADD echo-node.js ${FUNCTION_URI}
