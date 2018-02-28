@@ -1,0 +1,9 @@
+apiVersion: projectriff.io/v1
+kind: Function
+metadata:
+  name: echo-java
+spec:
+  protocol: grpc
+  input: echo-java
+  container:
+    image: brian/echo-java:0.0.1

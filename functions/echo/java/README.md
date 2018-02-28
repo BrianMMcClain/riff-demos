@@ -3,19 +3,13 @@ echo-java
 
 The "Hello World" of Riff, the echo-java function takes in a string and echos it back at the user
 
-Build the Function
+Build and Deploy the Function
 ---
 ```
-mvn install
-mvn package
-riff build -n echo-java -v 0.0.1 -f .
+riff create --name echo-java java -a target/echo-1.0.0.jar --handler functions.Echo
 ```
 
-Apply the Function
----
-```
-riff apply -f .
-```
+
 
 Call the Function
 ---
@@ -33,4 +27,10 @@ curl $GATEWAY/requests/echo-java -H "$HEADER" -d "Hello World"
 Which will return:
 ```
 Echoing: Hello World
+```
+
+Alternativly, you may use the `riff publish` command, which will also POST the data over the HTTP gateway
+
+```
+riff publish --input echo-java -d "Hello World" -r
 ```
