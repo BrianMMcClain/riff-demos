@@ -27,7 +27,7 @@ fi
 helm delete demo --purge
 
 # Reinstall Riff
-helm install riffrepo/riff --name demo --set httpGateway.service.type=NodePort
+helm install riffrepo/riff --version 0.0.4 --name demo --set rbac.create=false --set httpGateway.service.type=NodePort
 
 echo -e "\n\nTo configure your terminal, run...\n
 eval \$(minikube docker-env)
