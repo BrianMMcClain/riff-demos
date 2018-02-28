@@ -1,1 +1,3 @@
-echo "Hello, $1"
+#!bin/sh
+
+xargs echo "Hello,"

@@ -1,6 +1,4 @@
 #!/bin/bash
 
-riff build -n greeting -v 0.0.1 -f greeting
-riff apply -f greeting
-riff build -n timestamp -v 0.0.1 -f timestamp
-riff apply -f timestamp
+cd greeting && riff create shell --output timestamp && cd ..
+cd timestamp && riff create shell

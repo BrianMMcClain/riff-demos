@@ -60,3 +60,9 @@ Which will return:
 ```
 [2018-01-04 21:34:57] Hello, World
 ```
+
+Alternativly, you can also use the `riff publish` command
+
+```
+riff publish --input greeting -d "World" -r
+```

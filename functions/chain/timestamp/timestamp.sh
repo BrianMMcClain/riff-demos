@@ -1,1 +1,3 @@
-echo "[`date '+%Y-%m-%d %H:%M:%S'`] $1"
+#!/bin/sh
+
+xargs echo "[`date '+%Y-%m-%d %H:%M:%S'`]"

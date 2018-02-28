@@ -1,0 +1,9 @@
+apiVersion: projectriff.io/v1
+kind: Function
+metadata:
+  name: timestamp
+spec:
+  protocol: grpc
+  input: timestamp
+  container:
+    image: brian/timestamp:0.0.1

@@ -1,0 +1,13 @@
+apiVersion : projectriff.io/v1
+kind: Topic
+metadata:	
+  name: greeting
+spec:
+  partitions: 1
+---
+apiVersion : projectriff.io/v1
+kind: Topic
+metadata:	
+  name: timestamp
+spec:
+  partitions: 1

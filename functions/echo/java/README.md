@@ -9,8 +9,6 @@ Build and Deploy the Function
 riff create --name echo-java java -a target/echo-1.0.0.jar --handler functions.Echo
 ```
 
-
-
 Call the Function
 ---
 If you havn't already, ensure your shell environment is setup with the Riff HTTP Gateway
