@@ -1,0 +1,9 @@
+apiVersion: projectriff.io/v1
+kind: Function
+metadata:
+  name: echo-shell
+spec:
+  protocol: grpc
+  input: echo-shell
+  container:
+    image: brian/echo-shell:0.0.1

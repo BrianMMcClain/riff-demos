@@ -1,1 +1,2 @@
-echo "Echoing: $1"
+#!/bin/sh
+xargs echo "Echoing:"
