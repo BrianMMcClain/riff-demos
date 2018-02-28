@@ -49,15 +49,15 @@ done
 echo "Tiller ready!"
 
 
-# Install Riff
-echo "Installing Riff..."
-helm install riffrepo/riff --name demo --set httpGateway.service.type=NodePort
+# Install Kafka and Riff
+echo "Installing Kafka and Riff..."
+kubectl create namespace riff-system
+helm install --name transport --namespace riff-system riffrepo/kafka
+helm install riffrepo/riff --version 0.0.4 --name demo --set rbac.create=false --set httpGateway.service.type=NodePort
 
 # Install the Riff CLI
 echo "Installing Riff CLI..."
-wget https://raw.githubusercontent.com/projectriff/riff/583246872ac95871073f160e5baae895035caa61/riff -O riff
-chmod +x riff
-mv riff /usr/local/bin/riff
+go get github.com/projectriff/riff
 
 
 echo -e "\n\nTo configure your terminal, run...\n
