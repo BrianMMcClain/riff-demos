@@ -3,16 +3,10 @@ echo-shell
 
 The "Hello World" of Riff, the echo-shell function takes in a string and echos it back at the user
 
-Build the Function
+Build and Deploy the Function
 ---
 ```
-riff build -n echo-shell -v 0.0.1 -f .
-```
-
-Apply the Function
----
-```
-riff apply -f .
+riff create --name echo-shell
 ```
 
 Call the Function
@@ -31,4 +25,10 @@ curl $GATEWAY/requests/echo-shell -H "$HEADER" -d "Hello World"
 Which will return:
 ```
 Echoing: Hello World
+```
+
+Alternativly, you may use the `riff publish` command, which will also POST the data over the HTTP gateway
+
+```
+riff publish --input echo-shell -d "Hello World" -r
 ```
