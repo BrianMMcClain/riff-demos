@@ -1,0 +1,9 @@
+apiVersion: projectriff.io/v1
+kind: Function
+metadata:
+  name: counter
+spec:
+  protocol: grpc
+  input: counter
+  container:
+    image: brian/counter:0.0.1

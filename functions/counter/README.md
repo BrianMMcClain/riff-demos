@@ -14,8 +14,10 @@ Build and Create the Function
 ```
 mvn install
 mvn package
-riff build -n counter -v 0.0.1 -f .
-riff apply -f .
+```
+
+```
+riff create java -a target/counter-1.0.0-jar-with-dependencies.jar --handler functions.Counter
 ```
 
 Call the Function
