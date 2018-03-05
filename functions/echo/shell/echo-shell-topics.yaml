@@ -3,4 +3,4 @@ kind: Topic
 metadata:	
   name: echo-shell
 spec:
-  partitions: 1
+  partitions: 3
