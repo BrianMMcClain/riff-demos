@@ -6,4 +6,4 @@ spec:
   protocol: grpc
   input: counter
   container:
-    image: brian/counter:0.0.1
+    image: brianmmcclain/counter:0.0.1

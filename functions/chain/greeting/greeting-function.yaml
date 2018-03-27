@@ -8,4 +8,4 @@ spec:
   output: timestamp
 
   container:
-    image: brian/greeting:0.0.1
+    image: brianmmcclain/greeting:0.0.1

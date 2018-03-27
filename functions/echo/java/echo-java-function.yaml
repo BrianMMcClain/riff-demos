@@ -6,4 +6,4 @@ spec:
   protocol: grpc
   input: echo-java
   container:
-    image: brian/echo-java:0.0.1
+    image: brianmmcclain/echo-java:0.0.1
