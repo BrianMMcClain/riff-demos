@@ -24,12 +24,16 @@ brew install kubernetes-helm
 
 # Start Minikube
 echo "Starting Minikube..."
-minikube start --memory=4096
+minikube start --memory=4096 --bootstrapper=kubeadm
+eval $(minikube docker-env)
 
 # Setup Helm
 echo "Setting up Helm..."
-helm init
-helm repo add riffrepo https://riff-charts.storage.googleapis.com
+kubectl -n kube-system create serviceaccount tiller
+kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+helm init --service-account=tiller
+
+helm repo add projectriff https://riff-charts.storage.googleapis.com
 helm repo update
 
 # Wait for Tiller to start
@@ -51,17 +55,38 @@ echo "Tiller ready!"
 
 # Install Kafka and Riff
 echo "Installing Kafka and Riff..."
-kubectl create namespace riff-system
-helm install --name transport --namespace riff-system riffrepo/kafka
-helm install riffrepo/riff --version 0.0.4 --name demo --set rbac.create=false --set httpGateway.service.type=NodePort
+helm install projectriff/riff --name projectriff --namespace riff-system --set kafka.create=true --set httpGateway.service.type=NodePort --wait
 
 # Install the Riff CLI
 echo "Installing Riff CLI..."
-go get github.com/projectriff/riff
+go get -u github.com/projectriff/riff
 
+# Wait for Riff to start
+echo "Waiting for Riff to start..."
+RIFF_WAIT=0
+until kubectl get po,deploy --namespace riff-system | grep Running | wc -l | grep 5 1> /dev/null 2> /dev/null
+do
+  sleep 5
+  RIFF_WAIT=$((RIFF_WAIT+1))
+  if [ $RIFF_WAIT -eq 30 ]
+  then
+      echo "Could not connect to Riff, exiting!"
+      exit -1
+  fi
+done
+
+echo "Riff ready!"
+
+# Install Riff invokers
+echo "Installing Riff invokers..."
+riff invokers apply -f https://github.com/projectriff/command-function-invoker/raw/v0.0.6/command-invoker.yaml
+riff invokers apply -f https://github.com/projectriff/go-function-invoker/raw/v0.0.2/go-invoker.yaml
+riff invokers apply -f https://github.com/projectriff/java-function-invoker/raw/v0.0.6/java-invoker.yaml
+riff invokers apply -f https://github.com/projectriff/node-function-invoker/raw/v0.0.8/node-invoker.yaml
+riff invokers apply -f https://github.com/projectriff/python3-function-invoker/raw/v0.0.6/python3-invoker.yaml
 
 echo -e "\n\nTo configure your terminal, run...\n
 eval \$(minikube docker-env)
-export GATEWAY=\`minikube service --url demo-riff-http-gateway\`
+export GATEWAY=\`minikube service --url projectriff-riff-http-gateway --namespace riff-system\`
 export HEADER=\"Content-Type: text/plain\"
 "
