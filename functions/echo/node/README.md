@@ -6,7 +6,7 @@ The "Hello World" of Riff, the echo-node function takes in a string and echos it
 Build and Deploy the Function
 ---
 ```
-riff create --name echo-node
+riff create node --name echo-node --filepath . -a echo-node.js --input echo-node
 ```
 
 Call the Function

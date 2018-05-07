@@ -1,6 +1,5 @@
-apiVersion : projectriff.io/v1
+---
+apiVersion: projectriff.io/v1alpha1
 kind: Topic
-metadata:	
+metadata:
   name: echo-node
-spec:
-  partitions: 1

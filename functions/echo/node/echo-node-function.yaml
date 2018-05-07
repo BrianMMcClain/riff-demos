@@ -1,9 +1,10 @@
-apiVersion: projectriff.io/v1
+---
+apiVersion: projectriff.io/v1alpha1
 kind: Function
 metadata:
   name: echo-node
 spec:
-  protocol: grpc
-  input: echo-node
   container:
-    image: brianmmcclain/echo-node:0.0.1
+    image: brian/echo-node:0.0.1
+  input: echo-node
+  protocol: grpc
