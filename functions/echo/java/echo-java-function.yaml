@@ -1,9 +1,10 @@
-apiVersion: projectriff.io/v1
+---
+apiVersion: projectriff.io/v1alpha1
 kind: Function
 metadata:
   name: echo-java
 spec:
-  protocol: grpc
-  input: echo-java
   container:
-    image: brianmmcclain/echo-java:0.0.1
+    image: brian/echo-java:0.0.1
+  input: echo-java
+  protocol: grpc

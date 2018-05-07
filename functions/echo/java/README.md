@@ -6,7 +6,7 @@ The "Hello World" of Riff, the echo-java function takes in a string and echos it
 Build and Deploy the Function
 ---
 ```
-riff create --name echo-java java -a target/echo-1.0.0.jar --handler functions.Echo
+riff create java --name echo-java --filepath . -a target/echo-1.0.0.jar --input echo-java --handler functions.Echo
 ```
 
 Call the Function
