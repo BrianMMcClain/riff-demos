@@ -5,6 +5,6 @@ metadata:
   name: echo-node
 spec:
   container:
-    image: brian/echo-node:0.0.1
+    image: brianmmcclain/echo-node:0.0.1
   input: echo-node
   protocol: grpc
