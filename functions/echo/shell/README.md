@@ -6,14 +6,14 @@ The "Hello World" of Riff, the echo-shell function takes in a string and echos i
 Build and Deploy the Function
 ---
 ```
-riff create --name echo-shell
+riff create command --name echo-shell --filepath . -a echo-shell.sh --input echo-shell
 ```
 
 Call the Function
 ---
 If you havn't already, ensure your shell environment is setup with the Riff HTTP Gateway
 ```
-export GATEWAY=`minikube service --url demo-riff-http-gateway`
+export GATEWAY=`minikube service --url projectriff-riff-http-gateway --namespace riff-system`
 export HEADER="Content-Type: text/plain"
 ```
 
