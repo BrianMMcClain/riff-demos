@@ -5,6 +5,8 @@ metadata:
   name: echo-shell
 spec:
   container:
-    image: brianmmcclain/echo-shell:0.0.1
+    image: brianmmcclain/echo-shell:0.0.2
   input: echo-shell
   protocol: grpc
+  windowing:
+    size: 1
