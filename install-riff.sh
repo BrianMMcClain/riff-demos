@@ -55,11 +55,24 @@ echo "Tiller ready!"
 
 # Install Kafka and Riff
 echo "Installing Kafka and Riff..."
-helm install projectriff/riff --name projectriff --namespace riff-system --set kafka.create=true --set httpGateway.service.type=NodePort --wait
+helm install projectriff/riff --version 0.0.7 --name projectriff --namespace riff-system --set kafka.create=true --set httpGateway.service.type=NodePort --wait
 
 # Install the Riff CLI
 echo "Installing Riff CLI..."
-go get -u github.com/projectriff/riff
+# go get -u github.com/projectriff/riff
+# The current dev build has some inconsistancies, so pull
+# a static build
+curl -Lo riff-darwin-amd64.tgz https://github.com/projectriff/riff/releases/download/v0.0.7/riff-darwin-amd64.tgz
+tar xvzf riff-darwin-amd64.tgz
+mv riff /usr/local/bin/
+
+RIFF_PATH=`which riff`
+if [ "$RIFF_PATH" != "/usr/local/bin/riff" ]
+then
+    echo "Current Riff path is not /usr/local/bin/riff"
+    echo "Patching current Riff location with correct build"
+    cp /usr/local/bin/riff $RIFF_PATH
+fi
 
 # Wait for Riff to start
 echo "Waiting for Riff to start..."
@@ -80,8 +93,8 @@ echo "Riff ready!"
 # Install Riff invokers
 echo "Installing Riff invokers..."
 riff invokers apply -f https://github.com/projectriff/command-function-invoker/raw/v0.0.6/command-invoker.yaml
-riff invokers apply -f https://github.com/projectriff/go-function-invoker/raw/v0.0.2/go-invoker.yaml
-riff invokers apply -f https://github.com/projectriff/java-function-invoker/raw/v0.0.6/java-invoker.yaml
+riff invokers apply -f https://github.com/projectriff/go-function-invoker/raw/v0.0.3/go-invoker.yaml
+riff invokers apply -f https://github.com/projectriff/java-function-invoker/raw/v0.0.7/java-invoker.yaml
 riff invokers apply -f https://github.com/projectriff/node-function-invoker/raw/v0.0.8/node-invoker.yaml
 riff invokers apply -f https://github.com/projectriff/python3-function-invoker/raw/v0.0.6/python3-invoker.yaml
 
