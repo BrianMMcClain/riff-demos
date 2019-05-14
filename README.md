@@ -1,7 +1,13 @@
+**NOTE:** riff has gone through some major changes since these demos have been written, and as such this repo will be updated. Until then however, check out the [Getting Started with Riff on Minikube](https://projectriff.io/docs/getting-started/minikube/) blog on the Project riff website!
+
+TODO:
+- [X] Rewrite Install Script
+- [ ] Rewrite Clean Script
+- [ ] Port demos
+- [ ] Update README
+
 Riff Demos
 ===
-
-**NOTE:** riff has gone through some major changes since these demos have been written, and as such this repo will be updated. Until then however, check out the [Getting Started with Riff on Minikube](https://projectriff.io/docs/getting-started/minikube/) blog on the Project riff website!
 
 A collection of demo functions and helper scripts to get up and running with [Riff](https://github.com/projectriff/riff), an OSS solution that provides Functions-as-a-Service for Kubernetes.
 
